@@ -47,7 +47,7 @@ function addJokeToDB() {
     clearTheFields();
 }
 
-function showList(event) {
+function showList() {
     var transact = jokesDB.transaction(["allJokes"]);
     var myStore = transact.objectStore("allJokes");
 
@@ -58,7 +58,6 @@ function showList(event) {
         if (cursor) {
             $("#theList").append("<li>" + cursor.value.title + "</li>");
             cursor.continue();
-
         }
         else {
             console.log("No more entries!");
@@ -66,6 +65,20 @@ function showList(event) {
     };
 
 
+}
+
+function getJokeByTitle(title) {
+    var transact = jokesDB.transaction(["allJokes"]);
+    var myStore = transact.objectStore("allJokes");
+    var index = myStore.index("title");
+    //var theJoke;
+
+    index.get(title).onsuccess = function (event) {
+
+        // theJoke = event.target.result.joke;
+        //   alert("In getJoke " + event.target.result.joke);
+        $("#displayJokeArea").html(event.target.result.joke);
+    };
 }
 
 function clearTheFields() {
