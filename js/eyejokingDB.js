@@ -14,7 +14,7 @@ function openDB() {
         jokesDB = event.target.result;
         console.log("database has been opened");
         showList();
-        getJokeFromDB();
+        // getJokeFromDB();
 
     };
     openRequest.onupgradeneeded = function (event) {
@@ -45,23 +45,6 @@ function addJokeToDB() {
     };
 
     clearTheFields();
-}
-
-function getJokeFromDB(jokeTitle) {
-    //jokeTitle = "Two"
-    var transact = jokesDB.transaction(["allJokes"]);
-    var myStore = transact.objectStore("allJokes");
-    var index = myStore.index("title");
-    var theJoke;
-
-    index.get(jokeTitle).onsuccess = function (event) {
-        theJoke = event.target.result.joke;
-        alert("In getJoke " + event.target.result.joke);
-        // alert("right before return " + theJoke.title);
-        return event.target.result.joke;
-    };
-
-
 }
 
 function showList(event) {
