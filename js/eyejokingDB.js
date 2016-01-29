@@ -5,7 +5,7 @@
 var jokesDB;
 
 function openDB() {
-    var openRequest = window.indexedDB.open("jokesDB", 4);
+    var openRequest = window.indexedDB.open("jokesDB", 6);
 
     openRequest.onerror = function () {
         alert("Why didn't you allow my web app to use IndexedDB?!");
@@ -14,17 +14,16 @@ function openDB() {
         jokesDB = event.target.result;
         console.log("database has been opened");
         showList();
-        // getJokeFromDB();
 
     };
     openRequest.onupgradeneeded = function (event) {
         var db = event.target.result;
 
-        //db.deleteObjectStore("allJokes");
+        // db.deleteObjectStore("allJokes");
 
-        var objectStore = db.createObjectStore("allJokes", {keyPath: "id", autoIncrement: true});
+        var objectStore = db.createObjectStore("allJokes", {keyPath: "title"});
 
-        objectStore.createIndex("title", 'title');
+        // objectStore.createIndex("title", 'title');
 
         console.log("database has been upgraded");
     };
@@ -47,27 +46,47 @@ function addJokeToDB() {
     clearTheFields();
 }
 
-function showList() {
+function deleteJokeFromDB(ev) {
+    var title = ev.target.innerHTML;
+
+    var transactionReq = jokesDB.transaction(["allJokes"], "readwrite");
+    var myStore = transactionReq.objectStore("allJokes");
+    var answer = confirm("Are you sure you want to delete " + title);
+    console.log(answer);
+    if (answer) {
+        var deleteReq = myStore.delete(title);
+        deleteReq.onsuccess = function () {
+            $("#displayJokeArea").html(title + " has been deleted");
+        };
+        deleteReq.onerror = function (e) {
+            alert(e + " :something is fucked");
+        };
+
+        showList();
+    }
+
+}
+
+
+function getJoke(title) {
     var transact = jokesDB.transaction(["allJokes"]);
     var myStore = transact.objectStore("allJokes");
-
-    $("#theList").empty();
-
-    myStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
-        if (cursor) {
-            $("#theList").append("<li>" + cursor.value.title + "</li>");
-            cursor.continue();
-        }
-        else {
-            console.log("No more entries!");
-        }
+    var getReq = myStore.get(title);
+    getReq.onsuccess = function () {
+        //alert("In getJoke " + getReq.result.joke);
+        $("#displayJokeArea").html(getReq.result.joke);
+        //
+        return getReq.result.joke;
     };
+
+    // theJoke = event.target.result.joke;
 
 
 }
 
-function getJokeByTitle(title) {
+
+/*
+ function getJokeID(title) {
     var transact = jokesDB.transaction(["allJokes"]);
     var myStore = transact.objectStore("allJokes");
     var index = myStore.index("title");
@@ -78,11 +97,12 @@ function getJokeByTitle(title) {
         // theJoke = event.target.result.joke;
         //   alert("In getJoke " + event.target.result.joke);
         $("#displayJokeArea").html(event.target.result.joke);
+
+ alert("Target id: " + event.target.result.id);
+
+ return Number(event.target.result.id);
     };
+
 }
 
-function clearTheFields() {
-    //clear the fields
-    $("#tfJokeTitle").val("");
-    $("#taTheJoke").val("");
-}
+ */
