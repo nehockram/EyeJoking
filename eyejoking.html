@@ -8,31 +8,40 @@
     <title>Eye Joking</title>
 </head>
 <body>
-<div>
-    <h1 class="text-center">Eye Joking</h1>
-</div>
-<div id="addJokeTitleField>">
-    <label for="tfJokeTitle">Joke Title:</label>
-    <input type="text" id="tfJokeTitle">
-</div>
+<div class="container">
+    <div>
+        <h1 class="text-center">Eye Joking</h1>
+    </div>
+    <div id="addJokeTitleField>">
+        <label for="tfJokeTitle">Joke Title:</label>
+        <input type="text" id="tfJokeTitle">
+    </div>
 
-<div id="addJokeField>">
-    <label for="taTheJoke">The Joke:</label>
-    <textarea id="taTheJoke"></textarea>
-</div>
+    <div id="addJokeField>">
+        <label for="taTheJoke">The Joke:</label>
+        <textarea id="taTheJoke"></textarea>
+    </div>
 
-<div>
-    <button type="button" id="addJokeBtn">Add Joke</button>
-</div>
+    <div>
+        <button type="button" id="addJokeBtn">Add Joke</button>
+    </div>
 
-<div id="display">
-    <ol id="theList"></ol>
+    <div class="row">
+        <div class="col-xs-6" id="display">
+            <ul id="theList"></ul>
+        </div>
+        <div class="col-xs-6" id="displaySetList">
+            <ul id="setList">current set item</ul>
+        </div>
+    </div>
+
+    <div id="displayJokeArea"></div>
 </div>
-<div id="displayJokeArea"></div>
 
 <!--load JS-->
 <script type="text/javascript" src="js/jquery-2.2.0.js"></script>
 <script src="js/eyejoking.js"></script>
 <script src="js/eyejokingDB.js"></script>
+<script src="js/DnD.js"></script>
 </body>
 </html>

@@ -15,6 +15,10 @@ $(document).ready(function () {
 
 function listBeenClicked(event) {
     var whatItIs = event.target.innerHTML;
+    event.target.setAttribute("draggable", true);
+    event.target.addEventListener("dragstart", dragged);
+    event.target.addEventListener("drop", dropped);
+
     getJoke(whatItIs);
 
 }

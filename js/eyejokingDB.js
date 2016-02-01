@@ -67,7 +67,6 @@ function deleteJokeFromDB(ev) {
 
 }
 
-
 function getJoke(title) {
     var transact = jokesDB.transaction(["allJokes"]);
     var myStore = transact.objectStore("allJokes");
@@ -75,34 +74,9 @@ function getJoke(title) {
     getReq.onsuccess = function () {
         //alert("In getJoke " + getReq.result.joke);
         $("#displayJokeArea").html(getReq.result.joke);
+
         //
         return getReq.result.joke;
     };
 
-    // theJoke = event.target.result.joke;
-
-
 }
-
-
-/*
- function getJokeID(title) {
-    var transact = jokesDB.transaction(["allJokes"]);
-    var myStore = transact.objectStore("allJokes");
-    var index = myStore.index("title");
-    //var theJoke;
-
-    index.get(title).onsuccess = function (event) {
-
-        // theJoke = event.target.result.joke;
-        //   alert("In getJoke " + event.target.result.joke);
-        $("#displayJokeArea").html(event.target.result.joke);
-
- alert("Target id: " + event.target.result.id);
-
- return Number(event.target.result.id);
-    };
-
-}
-
- */
