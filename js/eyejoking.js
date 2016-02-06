@@ -3,6 +3,8 @@
  */
 var setList = document.getElementById("setList");
 
+//document.addEventListener("load", init);
+
 $(document).ready(function () {
     //Open DB
     openDB();
@@ -29,12 +31,10 @@ function init() {
 function listBeenClicked(event) {
     var whatItIs = event.target.innerHTML;
 
-
     event.target.setAttribute("draggable", true);
     event.target.addEventListener("dragstart", dragged);
 
     getJoke(whatItIs);
-
 }
 
 function clearTheFields() {
