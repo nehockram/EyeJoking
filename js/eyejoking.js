@@ -1,23 +1,37 @@
 /**
  * Created by mark on 1/21/16.
  */
+var setList = document.getElementById("setList");
 
 $(document).ready(function () {
-
     //Open DB
     openDB();
+    //set up Elements
+    init();
 
+});
+
+function init() {
     $("#addJokeBtn").click(addJokeToDB);
     $("#theList").click(listBeenClicked);
     $("#theList").dblclick(deleteJokeFromDB);
 
-});
+
+    setList.addEventListener("drop", dropped);
+    setList.addEventListener("dragenter", entering);
+    setList.addEventListener("dragleave", leaving);
+    setList.addEventListener("dragover", function (e) {
+        e.preventDefault();
+    });
+
+}
 
 function listBeenClicked(event) {
     var whatItIs = event.target.innerHTML;
+
+
     event.target.setAttribute("draggable", true);
     event.target.addEventListener("dragstart", dragged);
-    event.target.addEventListener("drop", dropped);
 
     getJoke(whatItIs);
 

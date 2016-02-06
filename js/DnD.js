@@ -3,7 +3,7 @@
  */
 //set data
 function dragged(e) {
-    var listItemCode = '"<li>" + e.target.innerHTML + "</li>"';
+    var listItemCode = e.target.innerHTML;
 
     e.dataTransfer.setData("Text", listItemCode);
 
@@ -15,8 +15,22 @@ function dragged(e) {
 function dropped(e) {
     e.preventDefault();
     var data = e.dataTransfer.getData("text");
-    //e.target.appendChild(data);
-    console.log("dropped: " + data);
+    var aLi = document.createElement("LI");
+    var textNode = document.createTextNode(data);
+    aLi.appendChild(textNode);
+
+    setList.appendChild(aLi);
+    //alert("dropped: " + data);
+}
+
+function entering(e) {
+    e.preventDefault();
+    setList.style.background = "yellow";
+}
+
+function leaving(e) {
+    e.preventDefault();
+    setList.style.background = "#FFFFFF";
 }
 
 
@@ -29,7 +43,7 @@ function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
-function drop(ev) {
-    ev.preventDefault();
-
-}
+//function drop(ev) {
+//    ev.preventDefault();
+//
+//}
