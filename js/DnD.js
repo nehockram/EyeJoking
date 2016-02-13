@@ -15,17 +15,18 @@ function dragged(e) {
 function dropped(e) {
     e.preventDefault();
     var data = e.dataTransfer.getData("text");
+
     var aLi = document.createElement("LI");
     var textNode = document.createTextNode(data);
     aLi.appendChild(textNode);
 
     setList.appendChild(aLi);
-    //alert("dropped: " + data);
+
 }
 
 function entering(e) {
     e.preventDefault();
-    setList.style.background = "yellow";
+    setList.style.background = "lightblue";
 }
 
 function leaving(e) {

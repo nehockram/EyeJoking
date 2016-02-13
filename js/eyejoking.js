@@ -65,3 +65,31 @@ function showList() {
 
 }
 
+function checkForDupe(title) {
+    var transact = jokesDB.transaction(["allJokes"]);
+    var myStore = transact.objectStore("allJokes");
+
+    //open and loop through cursor
+    myStore.openCursor().onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            console.log("cursor.value.title: " + cursor.value.title + " " + title);
+            if (cursor.value.title === title) {
+                // alert("joke already in list!");
+                return true;
+
+            } else {
+
+                return false;
+            }
+            cursor.continue();
+        }
+        //else {
+        //    return false;
+        //    console.log("No more entries!");
+        //}
+    };
+
+
+}
+
