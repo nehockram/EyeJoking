@@ -1,6 +1,7 @@
 /**
  * Created by mark on 1/21/16.
  */
+"use strict";
 var setList = document.getElementById("setList");
 
 //document.addEventListener("load", init);
@@ -56,8 +57,7 @@ function showList() {
         if (cursor) {
             $("#theList").append("<li>" + cursor.value.title + "</li>");
             cursor.continue();
-        }
-        else {
+        } else {
             console.log("No more entries!");
         }
     };
@@ -66,30 +66,16 @@ function showList() {
 }
 
 function checkForDupe(title) {
-    var transact = jokesDB.transaction(["allJokes"]);
-    var myStore = transact.objectStore("allJokes");
+    var theList = document.getElementById("setList");
+    var listItems = theList.getElementsByTagName("li");
+    var thereIsADupe = false;
 
-    //open and loop through cursor
-    myStore.openCursor().onsuccess = function (event) {
-        var cursor = event.target.result;
-        if (cursor) {
-            console.log("cursor.value.title: " + cursor.value.title + " " + title);
-            if (cursor.value.title === title) {
-                // alert("joke already in list!");
-                return true;
-
-            } else {
-
-                return false;
-            }
-            cursor.continue();
+    for (var i = 0; i < listItems.length; i++) {
+        if (listItems[i].innerHTML == title) {
+            thereIsADupe = true;
+            console.log("Its a dupe bitch");
         }
-        //else {
-        //    return false;
-        //    console.log("No more entries!");
-        //}
-    };
+    }
 
-
+    return thereIsADupe;
 }
-

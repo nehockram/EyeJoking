@@ -2,6 +2,7 @@
  * Created by mark on 1/21/16.
  */
 
+"use strict";
 var jokesDB;
 
 function openDB() {
@@ -21,7 +22,9 @@ function openDB() {
 
         // db.deleteObjectStore("allJokes");
 
-        var objectStore = db.createObjectStore("allJokes", {keyPath: "title"});
+        var objectStore = db.createObjectStore("allJokes", {
+            keyPath: "title"
+        });
 
         // objectStore.createIndex("title", 'title');
 
@@ -37,7 +40,10 @@ function addJokeToDB() {
     //add a joke to DB
     var transactionReq = jokesDB.transaction(["allJokes"], "readwrite");
     var myStore = transactionReq.objectStore("allJokes");
-    var addReq = myStore.add({title: jokeTitle, joke: theJoke});
+    var addReq = myStore.add({
+        title: jokeTitle,
+        joke: theJoke
+    });
     addReq.onsuccess = function () {
         showList();
         console.log("a joke has been added " + jokeTitle + ": " + theJoke);
@@ -80,4 +86,3 @@ function getJoke(title) {
     };
 
 }
-

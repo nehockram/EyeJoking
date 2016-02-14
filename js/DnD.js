@@ -2,6 +2,8 @@
  * Created by mark on 1/29/16.
  */
 //set data
+"use strict";
+
 function dragged(e) {
     var listItemCode = e.target.innerHTML;
 
@@ -16,11 +18,17 @@ function dropped(e) {
     e.preventDefault();
     var data = e.dataTransfer.getData("text");
 
-    var aLi = document.createElement("LI");
-    var textNode = document.createTextNode(data);
-    aLi.appendChild(textNode);
+    if (checkForDupe(data)) {
+        alert("Can't Add!  Joke already in set list!")
+    } else {
+        var aLi = document.createElement("LI");
+        var textNode = document.createTextNode(data);
+        aLi.appendChild(textNode);
 
-    setList.appendChild(aLi);
+        setList.appendChild(aLi);
+    }
+
+
 
 }
 
