@@ -34,7 +34,8 @@ function dropped(e) {
 
 function entering(e) {
     e.preventDefault();
-    setList.style.background = "lightblue";
+    //setList.style.background = "lightblue";
+    setList.style.border = "dotted";
 }
 
 function leaving(e) {
