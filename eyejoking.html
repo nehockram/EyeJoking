@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="css/cocostyles.css">
     <link rel="stylesheet" href="css/responso.css">
     <title>Eye Joking</title>
 </head>
@@ -16,31 +16,36 @@
         </div>
         <div class="row" id="addJokeTitleField>">
             <label class="col-4" for="tfJokeTitle">Joke Title:</label>
-            <input class="col-7" type="text" id="tfJokeTitle">
+            <input class="col-7" type="text" id="tfJokeTitle" placeholder="Enter Joke Title here...">
         </div>
 
         <div class="row" id="addJokeField>">
-            <label class="col-3" for="taTheJoke">The Joke:</label>
-            <textarea class="col-8" id="taTheJoke"></textarea>
+            <label for="taTheJoke">The Joke:</label>
+            <textarea rows="8" id="taTheJoke" placeholder="Enter Joke here..."></textarea>
         </div>
 
         <div>
-            <button type="button" id="addJokeBtn">Add Joke</button>
+            <button class="btn" type="button" id="addJokeBtn">Add Joke</button>
         </div>
 
-        <div class="row">
-            <div class="col-6 text-center">
-                <h3>All Jokes</h3></div>
-            <div class="col-6 text-center">
-                <h3>The Set List</h3></div>
-        </div>
 
         <div class="row">
-            <div class="col-6" id="display">
-                <ul id="theList"></ul>
+            <div>
+                <h3 class="col-xs-6 text-center">All Jokes</h3>
+
+                <h3 class="col-xs-6 text-center">The Set List</h3>
+
             </div>
-            <div class="col-6" id="displaySetList">
-                <ul id="setList"></ul>
+
+        </div>
+
+        <div class="row">
+            <div  id="display">
+                <ul class="col-xs-6" id="theList"></ul>
+                <ul class="col-xs-6" id="setList"></ul>
+
+            </div>
+            <div id="displaySetList">
             </div>
         </div>
 
