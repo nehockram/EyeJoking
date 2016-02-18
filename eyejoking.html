@@ -1,61 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/eyejoking.css">
+
+    <link rel="stylesheet" href="css/responso.css">
     <title>Eye Joking</title>
 </head>
+
 <body>
-<div class="container">
-    <div>
-        <h1 class="text-center">Eye Joking</h1>
-    </div>
-    <div class="row" id="addJokeTitleField>">
-        <label class="col-xs-4" for="tfJokeTitle">Joke Title:</label>
-        <input class="col-xs-7" type="text" id="tfJokeTitle">
-    </div>
-
-    <div class="row" id="addJokeField>">
-        <label class="col-xs-3" for="taTheJoke">The Joke:</label>
-        <textarea class="col-xs-8" id="taTheJoke"></textarea>
-    </div>
-
-    <div>
-        <button type="button" id="addJokeBtn">Add Joke</button>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-6 text-center"><h3>All Jokes</h3></div>
-        <div class="col-xs-6 text-center"><h3>The Set List</h3></div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-6" id="display">
-            <ul id="theList"></ul>
+    <div class="container">
+        <div>
+            <h1 class="text-center">Eye Joking</h1>
         </div>
-        <div class="col-xs-6" id="displaySetList">
-            <ul id="setList"></ul>
+        <div class="row" id="addJokeTitleField>">
+            <label class="col-4" for="tfJokeTitle">Joke Title:</label>
+            <input class="col-7" type="text" id="tfJokeTitle">
         </div>
+
+        <div class="row" id="addJokeField>">
+            <label class="col-3" for="taTheJoke">The Joke:</label>
+            <textarea class="col-8" id="taTheJoke"></textarea>
+        </div>
+
+        <div>
+            <button type="button" id="addJokeBtn">Add Joke</button>
+        </div>
+
+        <div class="row">
+            <div class="col-6 text-center">
+                <h3>All Jokes</h3></div>
+            <div class="col-6 text-center">
+                <h3>The Set List</h3></div>
+        </div>
+
+        <div class="row">
+            <div class="col-6" id="display">
+                <ul id="theList"></ul>
+            </div>
+            <div class="col-6" id="displaySetList">
+                <ul id="setList"></ul>
+            </div>
+        </div>
+
+        <div id="displayJokeArea"></div>
     </div>
 
-    <div id="displayJokeArea"></div>
-</div>
-
-<!--load JS-->
-<!--<script type="text/javascript" src="js/jquery-2.2.0.js"></script>-->
-
- <script src="js/eyejokingDB.js"></script>
+    <!--load JS-->
+    <script src="js/eyejokingDB.js"></script>
     <script src="js/DnD.js"></script>
-<script src="js/eyejoking.js"></script>
+    <script src="js/eyejoking.js"></script>
 
 
 </body>
-</html>
-<script src="js/eyejoking.js"></script>
-<script src="js/eyejokingDB.js"></script>
-<script src="js/DnD.js"></script>
-</body>
-</html>
 
+</html>
