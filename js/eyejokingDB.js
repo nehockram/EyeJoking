@@ -34,8 +34,8 @@ function openDB() {
 
 function addJokeToDB() {
     //get fields
-    var jokeTitle = $("#tfJokeTitle").val();
-    var theJoke = $("#taTheJoke").val();
+    var jokeTitle = document.getElementById("tfJokeTitle").value;
+    var theJoke = document.getElementById("taTheJoke").value;
 
     //add a joke to DB
     var transactionReq = jokesDB.transaction(["allJokes"], "readwrite");
@@ -78,10 +78,9 @@ function getJoke(title) {
     var myStore = transact.objectStore("allJokes");
     var getReq = myStore.get(title);
     getReq.onsuccess = function () {
-        //alert("In getJoke " + getReq.result.joke);
-        $("#displayJokeArea").html(getReq.result.joke);
+        var dispArea = document.getElementById("displayJokeArea");
+        dispArea.innerHTML = getReq.result.joke;
 
-        //
         return getReq.result.joke;
     };
 

@@ -4,21 +4,20 @@
 "use strict";
 var setList = document.getElementById("setList");
 
-//document.addEventListener("load", init);
-
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
     //Open DB
     openDB();
     //set up Elements
     init();
-
-});
+}, false);
 
 function init() {
-    $("#addJokeBtn").click(addJokeToDB);
-    $("#theList").click(listBeenClicked);
-    $("#theList").dblclick(deleteJokeFromDB);
+    var btnAddJoke = document.getElementById("addJokeBtn");
+    btnAddJoke.addEventListener("click", addJokeToDB);
 
+    var theFullList = document.getElementById("theList");
+    theFullList.addEventListener("click", listBeenClicked);
+    theFullList.addEventListener("dblclick", deleteJokeFromDB);
 
     setList.addEventListener("drop", dropped);
     setList.addEventListener("dragenter", entering);
@@ -40,8 +39,17 @@ function listBeenClicked(event) {
 
 function clearTheFields() {
     //clear the fields
-    $("#tfJokeTitle").val("");
-    $("#taTheJoke").val("");
+    document.getElementById("tfJokeTitle").value = "";
+    document.getElementById("taTheJoke").value = "";
+}
+
+function emptyList() {
+    var ul = document.getElementById("theList");
+    if (ul) {
+        while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+        }
+    }
 }
 
 function showList() {
@@ -49,13 +57,19 @@ function showList() {
     var myStore = transact.objectStore("allJokes");
 
     //empty the list
-    $("#theList").empty();
+    emptyList();
 
     //open and loop through cursor
     myStore.openCursor().onsuccess = function (event) {
         var cursor = event.target.result;
+        var theList = document.getElementById("theList");
+
         if (cursor) {
-            $("#theList").append("<li>" + cursor.value.title + "</li>");
+            // $("#theList").append("<li>" + cursor.value.title + "</li>");
+            var elem = document.createElement("LI");
+            var txty = document.createTextNode(cursor.value.title);
+            elem.appendChild(txty);
+            theList.appendChild(elem);
             cursor.continue();
         } else {
             console.log("No more entries!");
