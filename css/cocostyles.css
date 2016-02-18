@@ -7,3 +7,15 @@
 .text-center {
     text-align: center;
 }
+
+
+
+.listy {
+    width: 50%;
+    display: inline-block
+    float: left;
+}
+
+div {
+
+}
